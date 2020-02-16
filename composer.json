@@ -1,0 +1,5 @@
+{
+  "require": {
+    "mservice/payment":"dev-master"
+  }
+}

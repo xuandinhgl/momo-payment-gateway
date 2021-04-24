@@ -134,8 +134,8 @@ class Dht_Momo_Gateway extends WC_Payment_Gateway
 
         $sc = new DHT_Momo_Payment_Process($paymentData);
 
-        $redirectUrl = $sc->generateLinkMomo();
-        if ($redirectUrl['success']) {
+        $response = $sc->generateLinkMomo();
+        if ($response['success']) {
             $order->update_status('on-hold', __('Awaiting payment', 'dht-momo'));
 
             // Reduce stock levels
@@ -146,9 +146,11 @@ class Dht_Momo_Gateway extends WC_Payment_Gateway
 
             return [
                 'result' => 'success',
-                'redirect' => $redirectUrl['url']
+                'redirect' => $response['url']
             ];
         } else {
+            wc_add_notice(  $response['message'], 'dht-momo' );
+
             return [
                 'result' => 'error',
             ];
@@ -207,7 +209,6 @@ class Dht_Momo_Gateway extends WC_Payment_Gateway
             );
             printf(__('<p class="woocommerce-notice woocommerce-notice--error">%s Error code<strong>%s</strong></p>', 'dht-momo'), $message, $data[Parameter::ERROR_CODE]);
             $order->update_status('failed', $message);
-            return ;
         } else {
             _e('<p class="woocommerce-notice woocommerce-notice--error">Payment failed. Can not verify your request</p>', 'dht-momo');
 

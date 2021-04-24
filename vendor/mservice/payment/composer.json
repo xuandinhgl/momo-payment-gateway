@@ -1,0 +1,39 @@
+{
+    "name": "mservice/payment",
+    "description": "MoMo Package to speed up the integration process with merchants.",
+    "keywords": [
+        "mservice",
+        "momo",
+        "payment",
+        "package"
+    ],
+    "license": "MIT",
+    "support": {
+        "docs": "https://developers.momo.vn/"
+    },
+    "authors": [
+        {
+            "name": "Linh Nguyen   ",
+            "email": "linh.nguyen7@mservice.com.vn"
+        }
+    ],
+    "type": "library",
+    "require": {
+		"php": ">=7.2",
+        "phpseclib/phpseclib": "^2",
+        "monolog/monolog": "*",
+        "bramus/monolog-colored-line-formatter": "^3.0",
+        "ext-json":  "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8",
+        "vlucas/phpdotenv": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "MService\\Payment\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
